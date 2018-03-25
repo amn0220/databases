@@ -22,7 +22,10 @@ class Album extends Component {
           <div className='album-details'>
             <h1 id='album-title'>{this.state.album.title}</h1>
             <h2 className='artist'>{this.state.album.artist}</h2>
-            <div id='release-info'>{this.state.album.releaseInfo}</div>
+            <div id='release-info'>
+            {this.state.album.releaseInfo}
+            {this.state.album.year}
+            {this.state.album.label}</div>
             </div>
         </section>
         <table id='song-list'>
@@ -32,6 +35,15 @@ class Album extends Component {
          <col id='song-duration-column' />
         </colgroup>
         <tbody>
+        {this.state.album.songs.map( (song, index) =>
+             <tr className='song' key={index}>
+                   <td className='song-number'> {index+1} </td>
+                   <td className='ion-play'></td>
+                   <td className='ion-pause'></td>
+               <td className='song-title'>{song.title}</td>
+               <td className='song-duration'>{song.duration}</td>
+             </tr>
+           )}
         </tbody>
        </table>
       </section>
