@@ -1,28 +1,99 @@
+body {
+  background-image: url(bloc-jams-react-app-background.jpg);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+}
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+  }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  width: 100%;
+  padding: 100px;
   color: white;
+  font-size: 1.3em;
+  opacity: 0.9;
+  max-width: 100px;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+.App-header > div {
+  position: fixed;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 5em;
+  max-width: none;
 }
 
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+#album-title {
+  font-size: 2em;
+  text-align: center;
+}
+
+.artist {
+  font-size: 1.5em;
+}
+
+#release-info {
+  font-size: 1em;
+}
+
+footer {
+  font-weight: lighter;
+  padding: 20px;
+}
+
+h1 {
+  max-width: 100px;
+  margin: 25px auto 0;
+  border-width: 1px;
+  border-color: rgba(34, 34, 34, 0.1);
+}
+
+.hero-title {
+ font-size:2em;
+
+}
+
+.point-title {
+  font-size: 2em;
+}
+
+.point-description {
+  font-size: 1.5em;
+}
+
+nav {
+  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+
+.player-bar {
+  color: white;
+  padding-bottom: 50px;
+}
+
+#song-list{
+  font-size: 1.5;
+  color: white;
 }
