@@ -1,0 +1,120 @@
+#Exercises
+
+Use the commands above to complete the following tasks, and submit the SQL statements. Real-world examples must be distinct from those used in the text.
+
+>List the commands for adding, updating, and deleting data.
+	adding data:INSERT INTO
+	updating data: UPDATE
+	deleting data: DELETE FROM
+
+>Explain the structure for each type of command.
+	CREATE: creates a new table
+	INSERT INTO: inserts data into table wherever specified 
+	UPDATE: updates data that is already in the table
+	DELETE: deletes data from a table
+	ALTER TABLE: changes the table’s schema (can add, update, or delete columns)
+	DROP TABLE: permanently deletes all data in the table as well as the table itself
+
+>What are some of the data types that can be used in tables? Give a real-world example of each type.
+	decimal: a clients’s weight
+	money: the cost of a client’s personal training session
+	text: the daily plan for a client’s workouts/nutrition
+	date: the days for client’s personal training sessions
+	time: the times for client’s personal training sessions
+
+>Decide how to create a new table to hold a list of people invited to a wedding dinner. The table needs to have first and last names, whether they sent in their RSVP, the number of guests they are bringing, and the number of meals (1 for adults and 1/2 for children).
+
+	-Which data type would you use to store each of the following pieces of 		information?
+		-First and last name. -> text
+		-Whether they sent in their RSVP. -> char(1) with Y/N
+		-Number of guests. -> int
+		-Number of meals. -> decimal
+	-Write a command that creates the table to track the wedding dinner.
+
+		CREATE TABLE wedding_dinner (
+			name text,
+			RSVP char(1) SET DEFAULT N,
+			guests int,
+			meals decimal
+		);
+
+	-Write a command that adds a column to track whether the guest sent a thank you 	card.
+
+		ALTER TABLE wedding_dinner ADD COLUMN thank_you_card char(1) SET DEFAULT 		N;
+
+	-You have decided to move the data about the meals to another table, so write a 	command to remove the column storing the number meals from the wedding table.
+
+		ALTER TABLE wedding_dinner DROP COLUMN meals;
+
+	-The guests will need a place to sit at the reception, so write a command that 		adds a column for table number.
+
+		ALTER TABLE wedding_dinner ADD COLUMN table_number int;
+
+	-The wedding is over and we do not need to keep this information, so write a 		command that deletes the table numbers from the database.
+
+		ALTER TABLE wedding_dinner DROP COLUMN table_number;
+
+>Write a command to create a new table to hold the books in a library with the columns ISBN, title, author, genre, publishing date, number of copies, and available copies.
+	-Find three books and add their information to the table.
+	-Someone has just checked out one of the books. Change the number of available 		copies to 1 fewer.
+	-Now one of the books has been added to the banned books list. Remove it from the	table.
+
+>Write a command to make a new table to hold spacecrafts. Information should include id, name, year launched, country of origin, a brief description of the mission, orbiting body, if it is currently operating, and its approximate miles from Earth. In addition to the table creation, provide commands that perform the following operations:
+
+	CREATE TABLE spacecrafts (
+		id char(8),
+		name text,
+		year_launched integer,
+		country_of_origin text,
+		description text,
+		orbiting_body text,
+		currently_operating char(1),
+		miles_from_earth text
+	);
+
+	-Add three non-Earth-orbiting satellites to the table.
+
+	INSERT INTO spacecrafts (id, name, year_launched, country_of_origin, 			description, orbiting_body, currently_operating, miles_from_earth)
+	VALUES
+	(2014-076A, ‘Hayabusa2’, 2014, ‘Japan’, ‘an asteroid sample return mission		operated by the Japanese space agency’, JAXA’, ‘(162173) Ryugu’, Y, 1,920),
+	(2001-014A, '2001 Mars Odyssey', 2001, 'USA', 'detect presence of water, ice,		and study the planet's geology and radiation environment’, 'Mars', Y,			54,600,000),
+	(2011-040A, ‘Juno’, 2011, ‘USA’, ‘measure Jupiter's composition, gravity field,		magnetic field, and polar magnetosphere’, ‘Jupiter’, Y, 1.74 billion);
+
+	-Remove one of the satellites from the table since it has just crashed into the 	planet.
+
+	DELETE FROM spacecrafts WHERE id=2011-040A;
+
+	-Edit another satellite because it is no longer operating and change the value 		to reflect that.
+
+	UPDATE spacecrafts SET currently_operating=N WHERE id=2001-014A;
+
+
+>Write a command to create a new table to hold the emails in your inbox. This table should include an id, the subject line, the sender, any additional recipients, the body of the email, the timestamp, whether or not you have read the email, and the id of the email chain it's in. Also provide commands that perform the following operations:
+
+	CREATE TABLE emails (
+		id char,
+		subject_line text,
+		sender text,
+		recipients text,
+		body text,
+		timestamp text,
+		read char(1) SET DEFAULT N,
+		email_chain_ID char
+	);
+
+	-Add three new emails to the inbox.
+
+	INSERT INTO emails (id, subject, sender, recipients, body, timestamp, read,		email_chain_ID)
+	VALUES
+	(0001, ’20% discount on delivery order!’, ‘Grubhub’, ‘Order tonight and receive		20% off your entire order! Click here for discount code.’, 2018-05-19 15:20:00,		Y, 1111),
+	(0002, ‘Class video recording’, ‘Shane Donovan’, ‘Ro, Ken’, ‘Hey guys, which		class would you like to have us record for our 2 minute website clip?’,			2018-05-19 09:50:00, Y, 1112),
+	(0003, ‘Reset your password’, ‘Yahoo Mail’, ‘Click here to reset your password.’	2018-05-18 19:35:00, Y, 1113);
+
+	-You deleted one of the emails, so write a command to remove the row from the		inbox table.
+
+	DELETE FROM emails WHERE id=0003;
+
+	-You started reading an email but just heard a crash in another room. Mark the 		email as unread before investigating the crash, so you can come back and read it 	later.
+
+	UPDATE emails SET read=N WHERE id=0002;
+
