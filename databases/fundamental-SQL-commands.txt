@@ -55,9 +55,32 @@ Use the commands above to complete the following tasks, and submit the SQL state
 		ALTER TABLE wedding_dinner DROP COLUMN table_number;
 
 >Write a command to create a new table to hold the books in a library with the columns ISBN, title, author, genre, publishing date, number of copies, and available copies.
+
+	CREATE TABLE library (
+ 		isbn char,
+   		title text,
+  		author text,
+  		genre text,
+  		publishing_date date,
+  		number_of_copies integer,
+  		available_copies integer
+	);
+
 	-Find three books and add their information to the table.
+
+	INSERT INTO library (isbn, title, author, genre, publishing_date, 			number_of_copies, available_copies)
+  	VALUES
+	(9781594634024, ‘The Girl on the Train’,’Paula Hawkins’, ‘Fiction’,2016-07-01,		5, 5),
+	(9780307947437, ‘Hallucinations,’ ‘Oliver Sacks’, ‘Non-Fiction’, 2012-01-01, 5,		5),
+	(9783502102229, ‘Gone Girl’,’Gillian Flynn’, ‘Fiction’, 2012-05-24, 5, 5);
+
 	-Someone has just checked out one of the books. Change the number of available 		copies to 1 fewer.
-	-Now one of the books has been added to the banned books list. Remove it from the	table.
+
+	UPDATE library SET available_copies=4 WHERE isbn=9783502102229;
+
+	-Now one of the books has been added to the banned books list. Remove it from		the table.
+	
+	DELETE from library where isbn=9780307947437;
 
 >Write a command to make a new table to hold spacecrafts. Information should include id, name, year launched, country of origin, a brief description of the mission, orbiting body, if it is currently operating, and its approximate miles from Earth. In addition to the table creation, provide commands that perform the following operations:
 
