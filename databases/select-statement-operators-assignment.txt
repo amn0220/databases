@@ -1,0 +1,119 @@
+#Exercises
+Answer the follwing questions and submit the responses.
+
+>Write out a generic SELECT statement.
+
+	SELECT <column1, column2, ... *>
+	FROM <table1, table2 ...>
+	<optional: WHERE <condition>>
+>Create a fun way to remember the order of operations in a SELECT statement, such as a mnemonic.
+
+I think ‘select, from, where’ is already easy to remember but here’s my mnemonic!:
+
+	(SELECT) Super
+	(FROM) Fruity
+	(WHERE) Wine :)
+
+>Given this dogs table, write queries to select the following pieces of data:
+
+<Intake teams typically guess the breed of shelter dogs, so the breed column may have multiple words (for example, "Labrador Collie mix”).>
+
+	-Display the name, gender, and age of all dogs that are part Labrador.
+
+		SELECT name, gender, age
+		FROM dogs
+		WHERE breed LIKE %Labrador%;
+
+	-Display the ids of all dogs that are under 1 year old.
+
+		SELECT id
+		FROM dogs
+		WHERE age < 1;
+
+	-Display the name and age of all dogs that are female and over 35lbs.
+
+		SELECT name, age
+		FROM dogs
+		WHERE gender = ‘F’
+		AND weight > 35;
+
+	-Display all of the information about all dogs that are not Shepherd mixes.
+
+		SELECT *
+		FROM dogs
+		WHERE breed NOT LIKE %Shepherd%;
+
+	-Display the id, age, weight, and breed of all dogs that are either over 60lbs or Great Danes.
+
+		SELECT id, age, weight, breed
+		FROM dogs
+		WHERE weight > 60
+		OR breed = ‘great dane’;
+
+>Given this cats table, what records are returned from these queries?
+
+	-SELECT name, adoption_date FROM cats;
+
+		(‘Mushi’, '2016-03-22’),
+		('Seashell’, NULL),
+		('Azul’, '2016-04-17’),
+		('Victoire’, '2016-09-01’),
+		(‘Nala’, NULL);
+
+	-SELECT name, age FROM cats;
+			
+		(‘Mushi’, 1),
+		('Seashell’, 7),
+		('Azul’, 3),
+		('Victoire’, 7),
+		(‘Nala’, 1);
+
+>From the cats table, write queries to select the following pieces of data.
+
+	-Display all the information about all of the available cats.
+
+		If adoption_date is for the date they’d be available to adopt rather than adopted here is the query
+
+		SELECT *
+		FROM cats;
+		
+		Otherwise, it’d be 
+	
+		SELECT *
+		FROM cats
+		WHERE adoption_date = NULL;
+
+	-Choose one cat of each age to show to potential adopters.
+
+		SELECT *
+		FROM cats
+		WHERE id < 4;
+		
+
+	-Find all of the names of the cats, so you don’t choose duplicate names for new cats.
+
+		SELECT name
+		FROM cats;
+		
+>List each comparison operator and explain when you would use it. Include a real world example for each. If you can’t list these from memory, do these flashcards until you can!
+
+	< less than, searching apartments that have been listed for less than a month
+	> greater than, checking for yelp ratings greater than 3 stars	
+	<= less than or equal to, searching apartments that are less than or equal to my max budget
+	>= greater than or equal to, searching for jobs with salaries greater than or equal to my minimum to pay the bills
+	!=(<>) not equal to, searching for new books in a library whose titles are not equal to ones I’ve read
+	= equal to, finding shoes at a yard sale that are equal to my size
+
+>From the cats table, what data is returned from these queries?
+
+	-SELECT name FROM cats WHERE gender = ‘F’;
+		(‘Seashell’),
+		(‘Nala’);
+	-SELECT name FROM cats WHERE age <> 3;
+		(‘Mushi’),
+		(‘Seashell’),
+		(‘Victoire’),
+		(‘Nala’);
+	-SELECT ID FROM cats WHERE name != ‘Mushi’ AND gender = ‘M’;
+		(3),
+		(4);
